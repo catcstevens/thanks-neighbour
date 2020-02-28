@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
     
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
-    before_action :set_conditions, only: [:new, :edit]
+    before_action :set_condition, only: [:new, :edit]
         def index
             @listings = Listing.all
         end
@@ -53,12 +53,13 @@ class ListingsController < ApplicationController
             id = params[:id]
             @listing = Listing.find(id)
         end
-        def set_conditions
+
+        def set_condition
             @condition = Listing.conditions.keys
         end
     
         def listing_params
-            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :min_rental, :neighbour_id, :photo_id)
+            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :rental_period, :neighbour_id )
         end
     
     end
