@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
     
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
-    before_action :set_condition, only: [:new, :edit]
+    before_action :set_condition, only: [:new, :edit, :create]
         def index
             @listings = Listing.all
         end
@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
     
         def create
             @listing = Listing.create(listing_params)
-                console
+                
             if @listing.errors.any?
                 render "new"
             else
@@ -59,7 +59,7 @@ class ListingsController < ApplicationController
         end
     
         def listing_params
-            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :rental_period, :neighbour_id )
+            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :rental_period )
         end
     
     end
