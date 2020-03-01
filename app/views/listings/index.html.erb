@@ -1,6 +1,7 @@
 <h1>Things to Borrow from your Neighbour</h1>
 
 <% @listings.each do |listing| %>
+    <%= image_tag listing.picture if listing.picture.attached? %>
     <p><%= listing.title %></p>
     <p><%= listing.description %></p>
     <p><%= listing.condition %></p>
@@ -10,6 +11,9 @@
     <p><%= listing.rental_period %></p>
     <%= link_to "edit", edit_listing_path(listing.id) %>
     <%= link_to "show", listing_path(listing.id) %>
+    <%= link_to "delete", listing_path(listing),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
 <% end %>
 
 

@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-    
+    before_action :authenticate_user!
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
     before_action :set_condition, only: [:new, :edit, :create]
         def index
@@ -40,8 +40,6 @@ class ListingsController < ApplicationController
         end
     
         def destroy
-            
-            
             @listing.destroy
      
             redirect_to listings_path
@@ -59,7 +57,7 @@ class ListingsController < ApplicationController
         end
     
         def listing_params
-            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :rental_period )
+            params.require(:listing).permit(:title, :description, :condition, :price, :deposit, :from, :to, :delivery, :rental_period, :picture)
         end
     
     end
